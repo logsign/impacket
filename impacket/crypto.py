@@ -52,7 +52,7 @@ def Generate_Subkey(K):
 #   +                                                                   +
 #   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    AES_128 = AES.new(K)
+    AES_128 = AES.new(K, AES.MODE_ECB)
 
     L = AES_128.encrypt('\x00'*16)
 
@@ -138,7 +138,7 @@ def AES_CMAC(K, M, length):
     const_Bsize = 16
     const_Zero  = '\x00'*16
 
-    AES_128= AES.new(K)
+    AES_128= AES.new(K, AES.MODE_ECB)
     M      = M[:length]
     K1, K2 = Generate_Subkey(K)
     n      = len(M)/const_Bsize
